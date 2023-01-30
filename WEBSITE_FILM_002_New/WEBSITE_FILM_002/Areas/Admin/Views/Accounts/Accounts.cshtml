@@ -1,0 +1,65 @@
+﻿@model IEnumerable<WEBSITE_FILM_002.Models.ACCOUNTS>
+
+@{
+    ViewBag.Title = "Accounts";
+    Layout = "~/Areas/Admin/Views/Shared/_layout_Admin.cshtml";
+}
+<p class="mt-4 mb-5">
+    <a href="/Admin/Accounts/CreateAccount" class="buttonCreate">Tạo tài khoản mới</a>
+</p>
+<div class=" container d-flex justify-content-center">
+    <table class="table form_input_admin">
+        <tr class="text-center">
+            <th>
+                @Html.DisplayNameFor(model => model.ACCOUNTNAME)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DATECREATE)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PERMISSON)
+            </th>
+            <th>
+                Ghi chú
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr class="text-center">
+                <td class="text-start">
+                    @Html.DisplayFor(modelItem => item.ACCOUNTNAME)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DATECREATE)
+                </td>
+                <td>
+                    @*@Html.DisplayFor(modelItem => item.PERMISSON)*@
+                    @{
+                        if (item.PERMISSON == 0)
+                        {
+                            <span> Người dùng cơ bản</span>
+                        }
+                        else if (item.PERMISSON == 1)
+                        {
+                            <span>Cộng tác viên</span>
+                        }
+                        else
+                        {
+                            <span>Quản trị viên</span>
+                        }
+                    }
+                </td>
+                <td>
+                    <a class="nav-link text-success" href="/Admin/Accounts/EditAccount/@(item.ACCOUNTID)" style="display: inline;">
+                        <i class="fas fa-user-edit"></i>
+                    </a>
+                    <a class="nav-link text-danger" href="/Admin/Accounts/DeleteAccount/@(item.ACCOUNTID)" style="display: inline;">
+                        <i class="fa-solid fa-trash"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

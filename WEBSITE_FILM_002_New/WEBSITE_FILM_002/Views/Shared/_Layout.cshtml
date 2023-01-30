@@ -1,0 +1,292 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <!-- add icon link -->
+    <link rel="icon" href="https://media.geeksforgeeks.org/wp-content/cdn-uploads/gfg_200X200.png"
+          type="image/x-icon">
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/Detail_Film.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    @* aos js *@
+    @*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" integrity="sha512-1cK78a1o+ht2JcaW6g8OXYwqpev9+6GqOkz9xmBN9iUUhIndKtxwILGWYOSibOKjLsEdjyjZvYDq/cZwNeak0w==" crossorigin="anonymous" referrerpolicy="no-referrer" />*@
+    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" integrity="sha512-A7AYk1fGKX6S2SsHywmPkrnzTZHrgiVT7GcQkLGDe2ev0aWb8zejytzS8wjo7PGEXKqJOrjQ4oORtnimIRZBtw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>*@
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" integrity="sha512-1cK78a1o+ht2JcaW6g8OXYwqpev9+6GqOkz9xmBN9iUUhIndKtxwILGWYOSibOKjLsEdjyjZvYDq/cZwNeak0w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    @{
+        bool checkIsLogin()
+        {
+            if (Session["isLogin"] == null)
+            {
+                Session["isLogin"] = false;
+                return false;
+            }
+            else
+            {
+                if ((bool)Session["isLogin"])
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+        if (Session["isLogin"] == null)
+        {
+            Session["isLogin"] = false;
+        }
+
+
+    }
+</head>
+<body>
+    <div class="site-menu">
+        <div class="col-12 text-end user-control" style="">
+
+            @{
+                if ((bool)checkIsLogin())
+                {
+                    <div style="margin-right: 2rem; font-size: .8rem; font-weight: 500;">
+                        <a href="/_Users/UserPage">
+                            <span>Xin chào, @Session["FirstName"] @Session["LastName"]</span>
+                            <img src="~/Images/Users/@Session["UserAvatar"]" alt="Alternate Text" style="height: 2rem; width: 2rem; border-radius: 100%; margin: 4px;" />
+                        </a>
+                        , <a href="/Pages/Logout">Đăng xuất</a>
+                    </div>
+                }
+                else
+                {
+                    <p>
+                        <span>
+                            <a href="/Pages/Login">
+                                Đăng nhập
+                            </a>
+                        </span>
+                        /
+                        <span>
+                            <a href="/Pages/Register">
+                                Đăng kí
+                            </a>
+                        </span>
+                    </p>
+                }
+
+            }
+            <p style="display:none">
+                <span>Xin chào, User name</span>
+                <span>
+                    <img src="#" alt="Alternate Text" />
+                </span>
+            </p>
+        </div>
+        <nav class="navbar navbar-expand-lg navbar-light m-0" style="">
+            <div class="container">
+                <a class="navbar-brand" style="font-weight: 900;" href="/"><i class="fas fa-play h4-title-c"></i><span class="h4-title-c">Alphabet</span></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                    <div class="row">
+                        <div class="col-12 col-md-12  p-3">
+                            <ul class="navbar-nav">
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" href="~/Pages/ListFilm?category=Phim Mới">PHIM MỚI</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="./ListFilm?category=Phim lẻ">PHIM LẺ</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="./ListFilm?category=Phim hoạt hình">HOẠT HÌNH</a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link text-uppercase" href="./ListFilm?category=Phim năm 2022">Phim năm</a>
+                                    @*<ul class="nav-item">
+                                            <li class="navbar">
+                                                <ul class="navbar-nav">
+                                                    <li class="nav-item"><a class="nav-link text-uppercase" href="#">content1</a></li>
+                                                    <li class="nav-item"><a class="nav-link text-uppercase" href="#">content</a></li>
+                                                    <li class="nav-item"><a class="nav-link text-uppercase" href="#">content</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="navbar">
+                                                <ul class="navbar-nav">
+                                                    <li class="nav-item"><a class="nav-link text-uppercase" href="#">content2</a></li>
+                                                    <li class="nav-item"><a class="nav-link text-uppercase" href="#">content</a></li>
+                                                    <li class="nav-item"><a class="nav-link text-uppercase" href="#">content</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="navbar">
+                                                <ul class="navbar-nav">
+                                                    <li class="nav-item"><a class="nav-link text-uppercase" href="#">content3</a></li>
+                                                    <li class="nav-item"><a class="nav-link text-uppercase" href="#">content</a></li>
+                                                    <li class="nav-item"><a class="nav-link text-uppercase" href="#">content</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>*@
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="./ListFilm?category=Phim chiếu rạp">CHIẾU RẠP</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="./ListFilm?category=Phim thuyết minh">THUYẾT MINH</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+    <!-- Remove the container if you want to extend the Footer to full width. -->
+    <div class=" my-5">
+        <!-- Footer -->
+        <footer class="text-center text-lg-start text-white"
+                style="background-color: #2B3467;">
+            <!-- Grid container -->
+            <div class="container p-4 pb-0">
+                <!-- Section: Links -->
+                <section class="">
+                    <!--Grid row-->
+                    <div class="row">
+                        <!-- Grid column -->
+                        <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+                            <h6 class="text-uppercase mb-4 font-weight-bold">
+                                Company ALPHABET
+                            </h6>
+                            <p class="text-white">
+                                Chuyên cung cấp những bộ phim chất lượng cao, nhiều thể loại khác nhau và hót nhất
+                                hiện nay.
+                                <br />
+                                Cảm ơn vì đã tin dùng sản phẩm.
+                            </p>
+                        </div>
+                        <!-- Grid column -->
+
+                        <hr class="w-100 clearfix d-md-none" />
+
+                        <!-- Grid column -->
+                        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+                            <h6 class="text-uppercase mb-4 font-weight-bold">Các trang</h6>
+                            <p>
+                                <a href="~/Pages/ListFilm" class="text-white">Danh sách phim</a>
+                            </p>
+                            <p>
+                                <a href="~/Pages/Login" class="text-white">Đăng nhập</a> / <a href="~/Pages/Register" class="text-white">Đăng ký</a>
+                            </p>
+                            <p>
+                                <a href="~/_Users/UserPage" class="text-white">Người dùng</a>
+                            </p>
+                            <p>
+                                <a href="~/Admin/Admin/Login/" class="text-white">Quản trị viên</a>
+                            </p>
+                        </div>
+                        <!-- Grid column -->
+
+                        <hr class="w-100 clearfix d-md-none" />
+
+                        <!-- Grid column -->
+                        <hr class="w-100 clearfix d-md-none" />
+
+                        <!-- Grid column -->
+                        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+                            <h6 class="text-uppercase mb-4 font-weight-bold">Liên hệ</h6>
+                            <p class="text-white"><i class="fas fa-home mr-3"></i> Nguyễn Minh Đăng</p>
+                            <p class="text-white"><i class="fas fa-envelope mr-3"></i> Nguyễn Khánh</p>
+                        </div>
+                        <!-- Grid column -->
+                        <!-- Grid column -->
+                        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
+                            <h6 class="text-uppercase mb-4 font-weight-bold">Follow us</h6>
+
+                            <!-- Facebook -->
+                            <a class="btn btn-primary btn-floating m-1"
+                               style="background-color: #3b5998"
+                               href="#!"
+                               role="button">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+
+                            <!-- Twitter -->
+                            <a class="btn btn-primary btn-floating m-1"
+                               style="background-color: #55acee"
+                               href="#!"
+                               role="button">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+
+                            <!-- Google -->
+                            <a class="btn btn-primary btn-floating m-1"
+                               style="background-color: #dd4b39"
+                               href="#!"
+                               role="button">
+                                <i class="fab fa-google"></i>
+                            </a>
+
+                            <!-- Instagram -->
+                            <a class="btn btn-primary btn-floating m-1"
+                               style="background-color: #ac2bac"
+                               href="#!"
+                               role="button">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+
+                            <!-- Linkedin -->
+                            <a class="btn btn-primary btn-floating m-1"
+                               style="background-color: #0082ca"
+                               href="#!"
+                               role="button">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <!-- Github -->
+                            <a class="btn btn-primary btn-floating m-1"
+                               style="background-color: #333333"
+                               href="#!"
+                               role="button">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <!--Grid row-->
+                </section>
+                <!-- Section: Links -->
+            </div>
+            <!-- Grid container -->
+            <!-- Copyright -->
+            <div class="text-center p-3"
+                 style="background-color: rgba(0, 0, 0, 0.2)">
+                @*© 2022 Copyright:*@
+                <a class="text-white" href="https://mdbootstrap.com/">Học phần Công nghệ WEB</a>
+            </div>
+            <!-- Copyright -->
+        </footer>
+        <!-- Footer -->
+    </div>
+
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v15.0" nonce="iqTlZl2Y"></script>
+
+
+
+    <!-- End of .container -->
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/Scripts/bootstrap.js")
+    @Scripts.Render("~/Scripts/User/Detail_Film.js")
+    @RenderSection("scripts", required: false)
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" integrity="sha512-A7AYk1fGKX6S2SsHywmPkrnzTZHrgiVT7GcQkLGDe2ev0aWb8zejytzS8wjo7PGEXKqJOrjQ4oORtnimIRZBtw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        AOS.init();
+    </script>
+
+
+</body>
+</html>

@@ -1,0 +1,168 @@
+﻿
+@media (min-width: 991.98px) {
+    main {
+        padding-left: 240px;
+    }
+}
+
+/* Sidebar */
+.sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    padding: 58px 0 0; /* Height of navbar */
+    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 5%), 0 2px 10px 0 rgb(0 0 0 / 5%);
+    width: 240px;
+    z-index: 600;
+}
+
+@media (max-width: 991.98px) {
+    .sidebar {
+        width: 100%;
+    }
+}
+
+.sidebar .active {
+    border-radius: 5px;
+    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
+}
+
+.sidebar-sticky {
+    position: relative;
+    top: 0;
+    height: calc(100vh - 48px);
+    padding-top: 0.5rem;
+    overflow-x: hidden;
+    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+}
+/*
+button Create Account */
+.buttonCreate {
+    padding: 1.3em 3em;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-weight: 500;
+    color: #000;
+    background-color: #fff;
+    border: none;
+    border-radius: 45px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+}
+
+    .buttonCreate:hover {
+        background-color: #23c483;
+        box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+        color: #fff;
+        transform: translateY(-7px);
+    }
+
+    .buttonCreate:active {
+        transform: translateY(-1px);
+    }
+
+/*Định dạng form input trang admin*/
+
+.form_input_admin {
+    background-color: white;
+    border-radius: 10px; 
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    width: auto;
+    margin-bottom: 3rem;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+
+tbody,
+.table-2{
+    padding: 10px;
+    display: block;
+    height: 30rem;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+
+.card-item-admin {
+    --primary-clr: #1C204B;
+    --dot-clr: #BBC0FF;
+    --play: hsl(195, 74%, 62%);
+    width: 200px;
+    height: 170px;
+    border-radius: 10px;
+}
+
+.card-item-admin {
+    font-family: "Arial";
+    color: #fff;
+    display: grid;
+    cursor: pointer;
+    grid-template-rows: 50px 1fr;
+}
+
+    .card-item-admin:hover .img-section {
+        transform: translateY(1em);
+    }
+
+.card-item-admin-desc {
+    border-radius: 10px;
+    padding: 15px;
+    position: relative;
+    top: -10px;
+    display: grid;
+    gap: 10px;
+    background: var(--primary-clr);
+}
+
+.card-item-admin-time {
+    font-size: 1.7em;
+    font-weight: 500;
+}
+
+.img-section {
+    transition: 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    background: hsl(195, 74%, 62%);
+}
+
+.card-item-admin-header {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.card-item-admin-title {
+    flex: 1;
+    font-size: 0.9em;
+    font-weight: 500;
+}
+
+.card-item-admin-menu {
+    display: flex;
+    gap: 4px;
+    margin-inline: auto;
+}
+
+.card-item-admin svg {
+    float: right;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.card-item-admin .dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--dot-clr);
+}
+
+.card-item-admin .recent {
+    line-height: 0;
+    font-size: 0.8em;
+    color: white;
+}

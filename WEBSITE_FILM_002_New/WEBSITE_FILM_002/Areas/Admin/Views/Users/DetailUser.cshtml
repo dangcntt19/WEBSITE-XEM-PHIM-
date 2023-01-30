@@ -1,0 +1,32 @@
+﻿@model WEBSITE_FILM_002.Models.USERS 
+    @{ 
+        ViewBag.Title = "DetailUser";
+        Layout = "~/Areas/Admin/Views/Shared/_layout_Admin.cshtml";
+     }
+
+<h4>Thông tin người dùng</h4>
+
+<div class="container mt-3">
+    <div class="d-flex justify-content-center">
+        <div class="row">
+            <div class="col-sm-6 col-md-5">
+                <div class="about-img"> <img src="~/Images/Users/@Model.IMAGENAME" class="img-fluid rounded b-shadow-a" alt="" style="width:320px; height: 250px; object-fit:cover;"></div>
+                <div class="about-img"> @*<img src="https://taimienphi.vn/tmp/cf/aut/anh-gai-xinh-1.jpg" class="img-fluid rounded b-shadow-a" alt="" style="width:250px; height: 250px; object-fit:cover;">*@</div>
+            </div>
+            <div class="col-sm-6 col-md-7">
+                <div class="about-info">
+                    <p><span class="title-s">Tên: </span> <span>@Model.FIRSTNAME @Model.LASTNAME</span></p>
+                    <p><span class="title-s">Ngày sinh: </span> <span>@Model.BORN.ToString("dd/MM/yyyy")</span></p>
+                    <p><span class="title-s">Giới tính: </span> <span>@(Model.GENDER == 0 ? "Nam" : "Nữ" )</span></p>
+                    <p><span class="title-s">Email: </span> <span>@(((new WEBSITE_FILM_002.Models.WEBSITE_FILM()).ACCOUNTS.Where(x => x.ACCOUNTID.Equals(Model.ACCOUNTID)).FirstOrDefault()).EMAIL == null ? "Không có" : ((new WEBSITE_FILM_002.Models.WEBSITE_FILM()).ACCOUNTS.Where(x => x.ACCOUNTID.Equals(Model.ACCOUNTID)).FirstOrDefault()).EMAIL )</span></p>
+                    <p><span class="title-s">Trạng thái: </span> <span>@(Model.USERSTATUS == 0 ? "Bình thường" : "Cấm truy cập")</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div  class="d-flex justify-content-center m-5">
+        <a href="../EditUser/@Model.USERID" class="buttonCreate me-3">Chỉnh sửa</a>
+        <a href="../Users" class="buttonCreate  me-3" style="color: red">Trở về</a>
+    </div>
+
+</div>

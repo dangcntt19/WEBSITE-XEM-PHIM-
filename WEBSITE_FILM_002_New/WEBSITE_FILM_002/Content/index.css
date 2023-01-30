@@ -1,0 +1,225 @@
+﻿
+.h4-title, h4-title-c {
+    color: #FF597B;
+    padding: 5px;
+    margin-bottom: 1rem;
+    margin-top: 2rem;
+    text-transform: uppercase;
+}
+
+.h4-title-c {
+    text-transform: uppercase;
+    color: #fff;
+    padding: 5px;
+    margin-bottom: 0;
+    margin-top: 0;
+    transition: 0.4s ease-in;
+}
+
+    .h4-title-c:hover {
+        color: #FF597B;
+        transform: translate(-10px) scale(1.1);
+    }
+
+.h4-secsion {
+    /*background-color: #4B56D2;*/
+    padding: 3px;
+    margin-bottom: 1rem;
+    margin-top: 2rem;
+}
+
+    .h4-secsion span {
+        /*background-color: #4B56D2;*/
+        color: #579BB1;
+        border-left: 5px solid #E1D7C6;
+        border-bottom: 5px solid #579BB1;
+        padding-right: 10rem;
+        padding-left: 1rem;
+        font-weight: 600;
+        text-transform: capitalize;
+    }
+.new-film-index {
+    transition: 0.5s linear;
+}
+
+    .new-film-index div {
+        width: 11rem;
+        height: 14rem;
+        overflow: hidden;
+        border-radius: 5px 5px;
+        transition: 0.5s ease-in;
+    }
+
+    .new-film-index img {
+        width: 13rem;
+        height: 14rem;
+        object-fit: cover;
+        transition: 0.3s ease-in;
+    }
+
+    .new-film-index h5 {
+        margin: 0px;
+        opacity: 0;
+        transition: .2s linear;
+        color: #EAEAEA;
+        background-color: #393E46;
+        font-size: 0.8rem;
+    }
+
+    .new-film-index:hover h5 {
+        opacity: 1;
+    }
+
+    .new-film-index:hover img{
+        transform: scale(1.1);
+    }
+
+
+.cards {
+    width: 10rem;
+    height: 12rem;
+    border-radius: 1em;
+    padding: 1.9rem;
+    /*background: #f5f5f5;*/
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    transition: 0.4s ease-out;
+    box-shadow: 0px 7px 20px rgba(43, 8, 37, 0.2);
+}
+
+    .cards:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: block;
+        width: 100%;
+        height: 100%;
+        /*background: rgba(238, 116, 116, 0.4);*/
+        z-index: 2;
+        transition: 0.5s;
+    }
+    .cards img {
+        border-radius: 7px;
+    }
+
+.cards-info {
+    position: relative;
+    z-index: 3;
+    color: #f5f5f5;
+    opacity: 0;
+    transform: translateY(20%);
+    transition: 0.5s;
+}
+
+/*Text*/
+.texts-title {
+    font-size: .9rem;
+    font-weight: 500;
+    color: white;
+}
+
+.texts-body {
+    letter-spacing: 1px;
+    font-size: 0.9rem;
+    margin: 5px 0 15px 0;
+    color: #fff !important;
+}
+
+/*Button*/
+.cards-button {
+    padding: 0.6rem;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    background: #ee9ca7;
+    color: white;
+    font-weight: bold;
+    transition: 0.4s ease;
+}
+
+/*Image*/
+.cards-img {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #ee9ca7;
+    background: linear-gradient(to bottom, #e7aeae, #ee9ca7);
+}
+
+/*Hover*/
+.cards:hover {
+    transform: translateY(5%);
+}
+
+    .cards:hover:before {
+        opacity: 1;
+    }
+
+    .cards:hover img {
+        filter: brightness(70%);
+    }
+
+    .cards:hover .cards-info {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+.cards-button:hover {
+    background: rgba(218, 77, 77, 0.4);
+    color: #f5f5f5;
+}
+
+
+@media screen and (max-width: 576px) {
+    .cards {
+        transform: translateY(5%);
+    }
+
+        .cards:before {
+            opacity: 1;
+        }
+
+        .cards img {
+            filter: brightness(70%);
+        }
+
+        .cards .cards-info {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+    .new-film-index h5 {
+        opacity: 1;
+    }
+
+    .new-film-index img {
+        transform: scale(1);
+    }
+
+}
+
+
+.readmoreBtn {
+    display: inline-block;
+    padding: 0.6em 1.7em;
+    border: 0.1em solid #579BB1;
+    margin: 0 0.3em 0.3em 0;
+    border-radius: 0.12em;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    color: #579BB1;
+    text-align: center;
+    transition: all 0.2s;
+}
+
+    .readmoreBtn:hover {
+        color: white;
+        background-color: #579BB1;
+        transform: translateY(-5px)
+    }

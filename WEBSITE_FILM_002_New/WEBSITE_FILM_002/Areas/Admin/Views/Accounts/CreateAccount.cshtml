@@ -1,0 +1,86 @@
+﻿@model WEBSITE_FILM_002.Models.ACCOUNTS
+
+@{
+    ViewBag.Title = "Tài khoản - Thêm mới";
+    Layout = "~/Areas/Admin/Views/Shared/_layout_Admin.cshtml";
+}
+
+
+
+
+
+<div>
+    <a href="../Accounts"><button class="button_save savebutton">Trở về</button></a>
+    <h3 style="display:inline; margin-left: 5px;">Tạo tài khoản</h3>
+
+</div>
+
+<div class="d-flex justify-content-center align-content-center form_input_admin">
+    @using (Html.BeginForm("CreateAccount", "Accounts", method: FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <div class="container text-center">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="mb-3 row">
+                    <div class="col-4 text-end">
+                        @Html.LabelFor(model => model.ACCOUNTNAME, htmlAttributes: new { @class = "control-label" })
+                    </div>
+                    <div class="col-8">
+                        @Html.EditorFor(model => model.ACCOUNTNAME, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ACCOUNTNAME, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <div class="col-4 text-end">
+                        @Html.LabelFor(model => model.ACCOUNTPASS, htmlAttributes: new { @class = "control-label col-md-2" })
+                    </div>
+                    <div class="col-8">
+                        @Html.EditorFor(model => model.ACCOUNTPASS, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ACCOUNTPASS, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <div class="col-4 text-end">
+                        <label for="password_2" class="form-label">Nhập lại mật khẩu</label>
+                    </div>
+                    <div class="col-8">
+                        <input type="password" class="form-control" id="password_2">
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <div class="col-4 text-end">
+                        <label for="EMAIL" class="form-label">Địa chỉ email</label>
+                    </div>
+                    <div class="col-8">
+                        @Html.EditorFor(model => model.EMAIL, new { htmlAttributes = new { @class = "form-control" }, required = "true" })
+                        @Html.ValidationMessageFor(model => model.EMAIL, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <div class="col-4 text-end">
+                        <label for="PERMISSON" class="form-label">Quyền tài khoản</label>
+                    </div>
+                    <div class="col-8">
+                        <select class="form-select text-center" id="PERMISSON" name="PERMISSON">
+                            <option value="0">Người dùng</option>
+                            <option selected value="1">Cộng tác viên</option>
+                            <option value="2">Quản trị viên</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" id="CreateAccountButton" value="Tạo mới" class="buttonCreate m-3" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

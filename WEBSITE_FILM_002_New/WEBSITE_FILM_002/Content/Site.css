@@ -1,0 +1,126 @@
+﻿@import url("HomePage.css");
+@import url("AdminPage.css");
+@import url("Detail_Film.css");
+@import url("index.css");
+@import url("PlayVideo.css");
+@import url("userpage.css");
+
+/* Set padding to keep content from hitting the edges */
+body {
+    background-color:#E3FDFD;
+}
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+    
+}
+
+.site-menu .user-control p {
+    font-weight: 300;
+    font-size: 0.8rem;
+    padding-right: 20px;
+    padding-left: 20px;
+    margin-top: 10px;
+    transition: 0.1s linear;
+}
+
+.site-menu .user-control a {
+    color: #144272;
+}
+
+.site-menu .user-control span:hover a {
+    font-weight: 600;
+    color: #227C70;
+}
+
+
+.site-menu .user-control .icon-login {
+    display: none;
+}
+.site-menu nav {
+    background-color: #2B3467;
+}
+
+.site-menu nav a {
+    color: #fff !important;
+    transition: 0.2s ease-in-out;
+}
+
+    .site-menu nav a:hover {
+        transform: translateY(-10px) scale(1.1);
+    }
+
+.font-weight-600{
+    font-weight: 600;
+}
+
+.pagination-container{
+    display: flex;
+    justify-content: center;
+}
+
+.pagination li {
+    width: 1.5rem;
+    padding: 0.2rem;
+    background-color: #F8EDE3;
+    margin: 0.2rem;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 7px;
+    transition: 0.2s ease;
+}
+
+.pagination li:hover {
+    transform: translateY(-10px);
+    cursor: pointer;
+}
+
+    .pagination li:first-child {
+        width: 1.5rem;
+        padding: 0.2rem;
+        background-color: #227C70;
+        margin: 0.2rem;
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    }
+
+    .pagination li:first-child a,
+    .pagination li:last-child a {
+        color: white;
+    }
+
+    .pagination li:last-child {
+        width: 1.5rem;
+        padding: 0.2rem;
+        background-color: #227C70;
+        margin: 0.2rem;
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    }
+
+.pagination .active {
+    background-color: #579BB1 !important;
+    color: white;
+}
+
+.pagination a {
+    color: #2B3467;
+    text-decoration: none;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.navbar-inverse .navbar-toggle:hover,
+.navbar-inverse .navbar-toggle:focus {
+    background-color: #777;
+    border-color: #fff
+}

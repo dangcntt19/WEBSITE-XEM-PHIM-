@@ -1,0 +1,145 @@
+﻿
+@{
+    ViewBag.Title = "Trang chủ ALPHABET";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div data-aos="fade-up" data-aos-duration="2000">
+    <h4 class="text-center h4-title">Phim mới</h4>
+    <div class="row">
+        @{
+            int Count = Enumerable.Count(ViewBag.NewFilm);
+            Count = Count - Count % 6;
+            foreach (var item in (IEnumerable<WEBSITE_FILM_002.Models.FILMS>)ViewBag.NewFilm)
+            {
+                <div class="col-6 col-sm-4 col-md-3 col-lg-3 col-xl-2 mb-3 new-film-index">
+                    <div class="position-relative bg-primary">
+                        <a href="/Pages/Detail_Film/@item.FILMID">
+                            <img class="position-absolute" src="~/Images//FilmPoster/@item.IMAGEID" alt="@item.FILMNAME" />
+                            <h5 class="position-absolute bottom-0 w-100 text-center p-2 limit-text-2-line">@item.FILMNAME</h5>
+                        </a>
+                    </div>
+                </div>
+                Count--;
+                if (Count == 0)
+                {
+                    break;
+                }
+            }
+        }
+        <div class="text-center">
+            <a href="~/Pages/ListFilm" class="readmoreBtn">Xem Thêm</a>
+        </div>
+    </div>
+</div>
+
+<div class="container" data-aos="zoom-in" data-aos-anchor-placement="bottom-bottom" data-aos-easing="linear" data-aos-duration="500">
+    <h4 class="text-center h4-title">Xếp hạng</h4>
+    <div class="row">
+        @{
+            int i = 1;
+            foreach (var item in (IEnumerable<WEBSITE_FILM_002.Models.FILMS>)ViewBag.RankFilm)
+            {
+                <div class="col-12 col-md-4 d-flex justify-content-center mb-3">
+                    <div class="cards">
+                        <img class="cards-img" src="~/Images//FilmPoster/@item.IMAGEID" alt="@item.IMAGEID" />
+                        <div class="cards-info">
+                            <a href="/Pages/Detail_Film/@item.FILMID">
+                                @*<svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h24v24H0z" fill="none"></path><path d="M4.828 21l-.02.02-.021-.02H2.992A.993.993 0 0 1 2 20.007V3.993A1 1 0 0 1 2.992 3h18.016c.548 0 .992.445.992.993v16.014a1 1 0 0 1-.992.993H4.828zM20 15V5H4v14L14 9l6 6zm0 2.828l-6-6L6.828 19H20v-1.172zM8 11a2 2 0 1 1 0-4 2 2 0 0 1 0 4z" fill="currentColor"></path></svg>*@
+                                <p class="texts-title limit-text-3-line">@item.FILMNAME</p>
+                                <p class="texts-body">Lượt xem: @item.VIEWS</p>
+                                <button class="cards-button">Xem phim</button>
+                            </a>
+                        </div>
+                    </div>
+                    <h5>TOP @(i++)</h5>
+                </div>
+            }
+        }
+    </div>
+
+</div>
+
+
+<h4 class="text-center h4-title">Theo ngôn ngữ</h4>
+
+<div data-aos="zoom-in" data-aos-anchor-placement="center-bottom" data-aos-easing="linear" data-aos-duration="500">
+    @*tiếng hàn start*@
+    <h4 class="h4-secsion"><span>Hàn Quốc</span></h4>
+    <div class="row fadeIn">
+        @{
+            foreach (var item in (IEnumerable<WEBSITE_FILM_002.Models.FILMS>)ViewBag.HQFilm)
+            {
+                <div class="col-6 col-sm-4 col-md-3 col-lg-3 col-xl-2 mb-3 new-film-index">
+                    <div class="position-relative bg-primary">
+                        <a href="/Pages/Detail_Film/@item.FILMID">
+                            <img class="position-absolute" src="~/Images//FilmPoster/@item.IMAGEID" alt="@item.FILMNAME" />
+                            <h5 class="position-absolute bottom-0 w-100 text-center p-2 limit-text-2-line">@item.FILMNAME</h5>
+                        </a>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+    <div class="text-center">
+        <a href="~/Pages/ListFilm?language=Hàn Quốc" class="readmoreBtn">Xem Thêm</a>
+    </div>
+    @*tiếng hàn end*@
+</div>
+
+<div data-aos="zoom-in" data-aos-easing="linear" data-aos-anchor-placement="center-bottom" data-aos-duration="500">
+    @*tiếng việt start*@
+    <h4 class="h4-secsion"><span>Việt Nam </span></h4>
+    <div class="row fadeIn">
+        @{
+            foreach (var item in (IEnumerable<WEBSITE_FILM_002.Models.FILMS>)ViewBag.TVFilm)
+            {
+                <div class="col-6 col-sm-4 col-md-3 col-lg-3 col-xl-2 mb-3 new-film-index">
+                    <div class="position-relative bg-primary">
+                        <a href="/Pages/Detail_Film/@item.FILMID">
+                            <img class="position-absolute" src="~/Images//FilmPoster/@item.IMAGEID" alt="@item.FILMNAME" />
+                            <h5 class="position-absolute bottom-0 w-100 text-center p-2 limit-text-2-line">@item.FILMNAME</h5>
+                        </a>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+    <div class="text-center">
+        <a href="~/Pages/ListFilm?language=Phụ đề Việt" class="readmoreBtn">Xem Thêm</a>
+    </div>
+    @*tiếng việt end*@
+</div>
+
+<div data-aos="zoom-in" data-aos-easing="linear" data-aos-anchor-placement="center-bottom" data-aos-duration="500">
+    @*tiếng trung start*@
+    <div>
+        <h4 class="h4-secsion"><span>Trung Quốc</span></h4>
+        <div class="row fadeIn">
+            @{
+                foreach (var item in (IEnumerable<WEBSITE_FILM_002.Models.FILMS>)ViewBag.TQFilm)
+                {
+                    <div class="col-6 col-sm-4 col-md-3 col-lg-3 col-xl-2 mb-3 new-film-index">
+                        <div class="position-relative bg-primary">
+                            <a href="/Pages/Detail_Film/@item.FILMID">
+                                <img class="position-absolute" src="~/Images//FilmPoster/@item.IMAGEID" alt="@item.FILMNAME" />
+                                <h5 class="position-absolute bottom-0 w-100 text-center p-2 limit-text-2-line">@item.FILMNAME</h5>
+                            </a>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+        <div class="text-center">
+            <a href="~/Pages/ListFilm?language=Trung Quốc" class="readmoreBtn">Xem Thêm</a>
+        </div>
+    </div>
+    @*tiếng trung end*@
+</div>
+
+
+
+
+
+

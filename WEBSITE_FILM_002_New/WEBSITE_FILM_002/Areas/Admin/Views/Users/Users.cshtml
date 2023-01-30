@@ -1,0 +1,54 @@
+﻿@model IEnumerable<WEBSITE_FILM_002.Models.USERS>
+
+@{
+    ViewBag.Title = "Users";
+    Layout = "~/Areas/Admin/Views/Shared/_layout_Admin.cshtml";
+}
+<h3 style="margin-left: 5px;">Thông tin người dùng</h3>
+
+<div class="d-flex container justify-content-center">
+
+
+    <table class="table form_input_admin">
+        <tr>
+            <th>
+                Người dùng
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BORN)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GENDER)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.USERSTATUS)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr class="text-center">
+                <td class="text-start">
+                    <span>@Html.DisplayFor(modelItem => item.FIRSTNAME) </span>
+                    <span>@Html.DisplayFor(modelItem => item.LASTNAME)</span>
+                </td>
+                <td>
+                    <span>@(((DateTime)item.BORN).ToString("dd/MM/yyyy"))</span>
+                </td>
+                <td>
+                    @(item.GENDER == 0 ? "Nam" : "Nữ")
+                </td>
+                <td>
+                    @(item.USERSTATUS == 0 ? "Bình Thường" : "Cảnh Báo")
+                </td>
+                <td>
+                    <a href="./EditUser/@item.USERID" style="display:inline;" class="text-success pe-1"><i class="fas fa-edit"></i></a>
+                    @*<a href="./DetailUser/@item.USERID" style="display:inline;" class="text-primary pe-1"><i class="fas fa-user"></i></a>*@
+                    <a href="./DeleteUser/@item.USERID" style="display:inline;" class="text-danger "><i class="fas fa-trash-alt"></i></a>
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

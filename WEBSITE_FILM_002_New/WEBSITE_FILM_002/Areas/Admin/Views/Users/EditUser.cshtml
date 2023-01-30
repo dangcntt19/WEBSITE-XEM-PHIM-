@@ -1,0 +1,152 @@
+﻿@model WEBSITE_FILM_002.Models.USERS
+
+@{
+    ViewBag.Title = "EditUser";
+    Layout = "~/Areas/Admin/Views/Shared/_layout_Admin.cshtml";
+    string imagename = Model.IMAGENAME;
+}
+
+<div>
+    <a href="../Users"><button class="button_save savebutton">Trở về</button></a>
+    <h3 style="display:inline; margin-left: 5px;">Cập nhật thông tin</h3>
+
+</div>
+
+<div class="container form_input_admin">
+    <div>
+        <div class="mb-3 d-flex justify-content-center">
+            <div>
+                <img src="~/Images//Users/@imagename" alt="Alternate Text" style="width: 10rem; height: 10rem; border-radius: 50%; object-fit: cover;" />
+            </div>
+        </div>
+        <div class="mb-4 d-flex justify-content-center">
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        @using (Html.BeginForm("ChangeAvatar", "Users", method: FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Đổi hình đại diện</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <label for="avatar" class="form-label">Đổi hình đại diện</label>
+                                <input type="file" class="form-control" name="image" id="avatar" value="" />
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="buttonCreate savebutton" data-bs-dismiss="modal">Đómg</button>
+                                <input type="submit" class="buttonCreate savebutton" name="save" value="Xác nhận" />
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <button type="button" class="buttonCreate savebutton" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Thay đổi
+            </button>
+        </div>
+    </div>
+
+
+    <div class="d-flex justify-content-center align-content-center">
+
+        @using (Html.BeginForm("EditUser", "Users", method: FormMethod.Post, new { @class = "w-100" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.USERID)
+
+
+
+
+                <div class="mb-3 row d-flex justify-content-center">
+                    <div class="form-group row col-12 col-md-6">
+                        <div class="col-12 col-md-4">
+                            @Html.LabelFor(model => model.FIRSTNAME, htmlAttributes: new { @class = "control-label" })
+                        </div>
+                        <div class="col-12 col-md-8">
+                            @Html.EditorFor(model => model.FIRSTNAME, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.FIRSTNAME, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group col-12 col-md-6 row">
+                        <div class="col-12 col-md-4">
+                            @Html.LabelFor(model => model.LASTNAME, htmlAttributes: new { @class = "control-label" })
+                        </div>
+                        <div class="col-12 col-md-8">
+                            @Html.EditorFor(model => model.LASTNAME, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.LASTNAME, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3 row d-flex justify-content-center">
+                    <div class="form-group col-12 col-md-6 row">
+                        <div class="col-12 col-md-4">
+                            @Html.LabelFor(model => model.BORN, htmlAttributes: new { @class = "control-label" })
+                        </div>
+                        <div class="col-12 col-md-8">
+                            @*@Html.EditorFor(model => model.BORN, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.BORN, "", new { @class = "text-danger" })*@
+                            <input type="date" class="form-control" name="born" id="born" value="@Model.BORN.ToString("yyyy-MM-dd")" />
+                        </div>
+                    </div>
+
+                    <div class="form-group col-12 col-md-6 row">
+                        <div class="col-12 col-md-4">
+                            @*@Html.LabelFor(model => model.GENDER, htmlAttributes: new { @class = "control-label" })*@
+                            <label class="form-label" for="gender">Giới tính</label>
+                        </div>
+                        <div class="col-12 col-md-8">
+                            <div>
+                                <input type="radio" class="form-check-inline" name="GENDER" id="gender1" value="0" @(Model.GENDER == 0 ? "checked" : "") />
+                                <label for="gender1" class="form-label font-weight-600">Nam</label>
+                            </div>
+                            <div>
+                                <input type="radio" class="form-check-inline" name="GENDER" id="gender2" value="1" @(Model.GENDER == 1 ? "checked" : "") />
+                                <label class="form-label font-weight-600" for="gender2">Nữ</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3 row d-flex justify-content-center">
+                    <div class="form-group  col-12 col-md-6 row">
+                        <div class="col-12 col-md-4">
+                            @Html.LabelFor(model => model.USERSTATUS, htmlAttributes: new { @class = "control-label" })
+                        </div>
+                        <div class="col-12 col-md-8">
+                            <select class="form-select" name="USERSTATUS" id="USERSTATUS">
+                                <option value="0" @((int)Model.USERSTATUS == 0 ? "selected" : "")>Kích hoạt</option>
+                                <option value="1" @((int)Model.USERSTATUS == 1 ? "selected" : "")>Tạm khóa</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group  col-12 col-md-6 row">
+                        <div class="col-12 col-md-4">
+                            @Html.LabelFor(model => model.ACCOUNTID, htmlAttributes: new { @class = "control-label" })
+                        </div>
+                        <div class="col-12 col-md-8">
+                            @*@Html.EditorFor(model => model.ACCOUNTID, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.ACCOUNTID, "", new { @class = "text-danger" })*@
+                            <p class="font-weight-600">@Model.ACCOUNTID</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group mt-3">
+                    <div class="col-md-offset-2 col-md-12 text-center">
+                        <input type="submit" value="Save" class="buttonCreate" />
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

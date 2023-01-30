@@ -1,0 +1,108 @@
+﻿@model IEnumerable<WEBSITE_FILM_002.Models.FILMS>
+
+@{
+    ViewBag.Title = "QLFILM";
+    Layout = "~/Areas/Admin/Views/Shared/_layout_Admin.cshtml";
+}
+
+
+<p class="mb-5">
+    @Html.ActionLink("Phim mới", "CreateFilm","" , new {@class = "buttonCreate mb-5"})
+</p>
+<table class="table form_input_admin">
+    <tr class="text-center">
+        <th>
+            @Html.DisplayNameFor(model => model.FILMNAME)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.STATUS)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.FILMDIRECTOR)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.PRODUCTIONYEAR)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TIME)
+        </th>
+       
+        <th>
+            @Html.DisplayNameFor(model => model.VIEWS)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MOVIEREVIEW)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DATECREATE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FILM_STATUS)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr class="text-center">
+        <td class="text-start">
+            @Html.DisplayFor(modelItem => item.FILMNAME)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.STATUS)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.FILMDIRECTOR)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.PRODUCTIONYEAR)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TIME)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.QUALITY)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RESOLUTION)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LANGUAGE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CATEGORY)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.VIEWS)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.MANUFACTURING_COMPANY)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.MOVIEREVIEW)
+        </td>
+        <td>
+            @*@Html.DisplayFor(modelItem => item.DATECREATE)*@
+            @item.DATECREATE.ToString("dd/MM/yyyy")
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FILM_STATUS)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.IMAGEID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VIDEOID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.USERID)
+        </td>*@
+        <td style="width: 4rem;">
+            @*@Html.ActionLink("Edit", "EditFilm", new { id=item.FILMID }) |
+            @Html.ActionLink("Delete", "DeleteFilm", new { id=item.FILMID })*@
+            <a href="./EditFilm/@item.FILMID" class="text-primary" style="display:inline"><i class="fas fa-edit"></i></a>
+            <a href="./Delete/@item.FILMID" class="text-danger" ><i class="fas fa-trash-alt"></i></a>
+        </td>
+    </tr>
+}
+
+</table>

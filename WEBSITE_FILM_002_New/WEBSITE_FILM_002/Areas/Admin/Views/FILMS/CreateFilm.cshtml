@@ -1,0 +1,155 @@
+﻿@model WEBSITE_FILM_002.Models.FILMS
+
+@{
+    ViewBag.Title = "CreateFilm";
+    Layout = "~/Areas/Admin/Views/Shared/_layout_Admin.cshtml";
+}
+
+<div>
+    <a href="/Admin/Films/QLFILM" ><button class="button_save savebutton">Trở về</button></a>
+    <h3 style="display:inline; margin-left: 5px;">Thêm phim mới</h3>
+
+</div>
+
+<div class="container form_input_admin">
+    @using (Html.BeginForm(actionName: "CreateFilm", controllerName: "FILMS", method: FormMethod.Post, new { enctype = "multipart/form-data"}))
+    {
+        @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="row d-flex justify-content-center">
+            <div class="form-group row mb-3  col-12 col-md-6 d-flex justify-content-center">
+                @Html.LabelFor(model => model.FILMNAME, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.FILMNAME, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.FILMNAME, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row mb-3  col-12 col-md-6 d-flex justify-content-center">
+                @Html.LabelFor(model => model.STATUS, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-12  col-md-7">
+                    <select class="form-select" id="STATUS" name="STATUS">
+                        <option value="Đang chiếu">Đang chiếu</option>
+                    </select>
+                    @*@Html.EditorFor(model => model.STATUS, new { htmlAttributes = new { @class = "form-control" } })*@
+                    @Html.ValidationMessageFor(model => model.STATUS, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="row d-flex justify-content-center">
+            <div class="form-group row mb-3  col-12 col-md-6 d-flex justify-content-center">
+                @Html.LabelFor(model => model.FILMDIRECTOR, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-12  col-md-7">
+                    @Html.EditorFor(model => model.FILMDIRECTOR, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.FILMDIRECTOR, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row mb-3  col-12 col-md-6 d-flex justify-content-center">
+                @Html.LabelFor(model => model.PRODUCTIONYEAR, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-12  col-md-7">
+                    <input type="date" class="form-control" id="PRODUCTIONYEAR" name="PRODUCTIONYEAR" value="@DateTime.Now.ToString("yyyy-mm-dd")" min="1970-01-01" max="@DateTime.Now.ToString("yyyy-mm-dd")" required>
+                    @*@Html.EditorFor(model => model.PRODUCTIONYEAR, new { htmlAttributes = new { @class = "form-control" } })*@
+                    @Html.ValidationMessageFor(model => model.PRODUCTIONYEAR, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="row  d-flex justify-content-center">
+            <div class="form-group row mb-3  col-12 col-md-6 d-flex justify-content-center">
+                @Html.LabelFor(model => model.TIME, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-12  col-md-7">
+                    @Html.EditorFor(model => model.TIME, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.TIME, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row mb-3  col-12 col-md-6 d-flex justify-content-center">
+                @Html.LabelFor(model => model.QUALITY, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-12  col-md-7">
+                    <select class="form-select" id="QUALITY" name="QUALITY">
+                        <option value="HD Trailer">HD Trailer</option>
+                    </select>
+                    @*@Html.EditorFor(model => model.QUALITY, new { htmlAttributes = new { @class = "form-control" } })*@
+                    @Html.ValidationMessageFor(model => model.QUALITY, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="row  d-flex justify-content-center">
+            <div class="form-group row mb-3 col-12 col-md-6 d-flex justify-content-center">
+                @Html.LabelFor(model => model.RESOLUTION, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-12  col-md-7">
+                    @Html.EditorFor(model => model.RESOLUTION, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.RESOLUTION, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row mb-3 col-12 col-md-6 d-flex justify-content-center">
+                @Html.LabelFor(model => model.LANGUAGE, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-12  col-md-7">
+                    @Html.EditorFor(model => model.LANGUAGE, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.LANGUAGE, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="row  d-flex justify-content-center">
+            <div class="form-group row mb-3 col-12 col-md-6 d-flex justify-content-center">
+                @Html.LabelFor(model => model.CATEGORY, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-12  col-md-7">
+                    @Html.EditorFor(model => model.CATEGORY, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CATEGORY, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row mb-3 col-12 col-md-6 d-flex justify-content-center">
+                @Html.LabelFor(model => model.MANUFACTURING_COMPANY, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-12  col-md-7">
+                    @Html.EditorFor(model => model.MANUFACTURING_COMPANY, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.MANUFACTURING_COMPANY, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="row  d-flex justify-content-center">
+            <div class="form-group row mb-3 col-12 col-md-6 d-flex justify-content-center">
+                @Html.LabelFor(model => model.IMAGEID, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-12  col-md-7">
+                    <input type="file" class="form-control" id="IMAGEID" name="IMAGEID" required>
+                    @Html.ValidationMessageFor(model => model.IMAGEID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row mb-3 col-12 col-md-6 d-flex justify-content-center">
+                @Html.LabelFor(model => model.VIDEOID, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-12  col-md-7">
+                    <input type="file" class="form-control" id="VIDEOID" name="VIDEOID" required>
+                    @Html.ValidationMessageFor(model => model.VIDEOID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group mb-3">
+            <div class="mb-3 text-center">
+                @Html.LabelFor(model => model.CONTENT_FILM, htmlAttributes: new { @class = "control-label col-md-3" })
+            </div>
+            <div class="d-flex justify-content-center">
+                @*@Html.EditorFor(model => model.CONTENT_FILM, new { htmlAttributes = new { @class = "form-control w-100" } })*@
+                <textarea class="form-control" id="CONTENT_FILM" name="CONTENT_FILM" rows="6" cols="50" style="height:10rem; max-width:70%"></textarea>
+                @Html.ValidationMessageFor(model => model.CONTENT_FILM, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-12  col-md-12 text-center">
+                <input type="submit" value="Create" class="buttonCreate" />
+            </div>
+        </div>
+    </div>
+    }
+</div>
+

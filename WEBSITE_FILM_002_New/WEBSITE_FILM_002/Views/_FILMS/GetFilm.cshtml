@@ -1,0 +1,38 @@
+﻿@model IEnumerable<WEBSITE_FILM_002.Models.FILMS>
+
+@{
+    ViewBag.Title = "GetFilm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Danh sách phim hiện có @ViewBag.message</h2>
+
+
+<div>
+    @{int i = 0; }
+
+    @foreach (var item in Model)
+    {
+
+        i++;
+
+        <div style="border:1px solid red; float:left; width:250px; margin: 17px 6px 3px 17px;">
+            <div style="width:200px; height:200px; ">
+                <img style="margin-top: 20px; margin-left:30px; width: 180px; " src="~/Images/FilmPoster/@item.IMAGEID" />
+            </div>
+            <div style=" height:80px; margin-top:15px; padding:10px; color:brown">
+                <a href="@Url.Action("GetFilm", "FILMS", new { TenPhim = item.FILMNAME})"> @item.FILMNAME</a>
+            </div>
+            <div style=" height:50px; padding:8px; border-top: 1px solid red;">
+                <span style="color:blue; font-weight:bold;">Ngày sản xuất:</span>
+                <span style="color:red; ">@Html.FormatValue(item.PRODUCTIONYEAR, "{0:M-dd-yyyy}")VNĐ</span>
+                
+            </div>
+        </div>
+        if (i % 3 == 0)
+        {
+            <div class="clearfix"></div>
+        }
+    }
+
+</div>

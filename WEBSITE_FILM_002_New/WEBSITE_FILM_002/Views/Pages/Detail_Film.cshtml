@@ -1,0 +1,199 @@
+﻿@model WEBSITE_FILM_002.Models.FILMS
+@{
+    ViewBag.Title = Model.FILMNAME;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    DateTime productionyear = (DateTime)(Model.PRODUCTIONYEAR);
+    string year = productionyear.ToString("MM/yyyy");
+}
+
+
+<main class="container"  data-aos="zoom-in" data-aos-easing="linear" data-aos-duration="500">
+    <div class="row d-flex justify-content-center">
+
+
+        <!-- nội dung bên trái  -->
+        <!-- nội dung bên trái  -->
+        <div class="left-body col-12 col-md-7 pt-3">
+            <!-- cây thư mục category  -->
+            <div class="mb-3">@Model.LANGUAGE > @Model.RESOLUTION > @Model.CATEGORY</div>
+            <!-- thông tin phim -->
+            <div class="blockbody row">
+                <div class="poster col-12 col-md-6 text-center pt-4">
+                    <img src="~/Images/FilmPoster/@Model.IMAGEID" class="img-fluid rounded-top" alt="@Model.IMAGEID">
+                    <div class="d-flex justify-content-center">
+                        <a href="../PlayVideo/@Model.FILMID#play" class="buttonCreate mt-3 mb-3" style="max-width: 200px" id="watch_film">Xem phim</a>
+                    </div>
+                </div>
+                <div class="detail col-12 col-md-6">
+                    <h3 class="p-3 text-uppercase text-center text-md-start">@Model.FILMNAME</h3>
+                    <div class="infor p-4 p-md-0">
+                        <p>Trạng thái: <span class="ps-4 text-capitalize">@(Model.STATUS != null ? Model.STATUS : "N/A")</span></p>
+                        <p>Đạo diễn: <span class="ps-4 text-capitalize">@(Model.FILMDIRECTOR != null ? Model.FILMDIRECTOR : "N/A")</span></p>
+                        <p>Thời lượng: <span class="ps-4 text-capitalize">@(Model.TIME)</span> phút</p>
+                        <p>Ngôn ngữ: <span class="ps-4 text-capitalize">@(Model.LANGUAGE != null ? Model.LANGUAGE : "N/A")</span></p>
+                        <p>Năm sản xuất: <span class="ps-4 text-capitalize">@(year) </span></p>
+                        <p>Thể loại: <span class="ps-4 text-capitalize">@(Model.CATEGORY != null ? Model.CATEGORY : "N/A")</span></p>
+                        <p>Chất lượng: <span class="ps-4 text-capitalize">@(Model.QUALITY != null ? Model.QUALITY : "N/A")</span></p>
+                        <p>Độ phân giải: <span class="ps-4 text-capitalize">@(Model.RESOLUTION != null ? Model.RESOLUTION : "N/A")</span></p>
+                        <p>Hãng phim: <span class="ps-4 text-capitalize">@(Model.MANUFACTURING_COMPANY != null ? Model.MANUFACTURING_COMPANY : "N/A")</span></p>
+
+                    </div>
+                    <div class="ratting mt-2">
+                        <div>
+                            <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-width="300" data-layout="button_count" data-action="like" data-size="small" data-share="true"></div>
+                        </div>
+                        @*<a href="#" class="btn-social me-3"><i class="fas fa-thumbs-up"></i> Like</a>
+                        <a href="#" class="btn-social me-3"><i class="fas fa-share"></i> Share</a>*@
+                        <div class="col-md-12 mt-3">
+                            <div class="stars">
+                                <div>
+                                    Đánh giá
+                                    <input class="star star-5 rating" id="star-5" type="radio" name="star" value="5" @(Model.MOVIEREVIEW == 5 ? "checked" : "") />
+
+                                    <label class="star star-5" for="star-5"></label>
+
+                                    <input class="star star-4" id="star-4" type="radio" name="star" value="4"  @(Model.MOVIEREVIEW == 4 ? "checked" : "")/>
+
+                                    <label class="star star-4" for="star-4"></label>
+
+                                    <input class="star star-3" id="star-3" type="radio" name="star" value="3"  @(Model.MOVIEREVIEW == 3 ? "checked" : "")/>
+
+                                    <label class="star star-3" for="star-3"></label>
+
+                                    <input class="star star-2" id="star-2" type="radio" name="star" value="2"  @(Model.MOVIEREVIEW == 2 ? "checked" : "")/>
+
+                                    <label class="star star-2" for="star-2"></label>
+
+                                    <input class="star star-1" id="star-1" type="radio" name="star" value="1"  @(Model.MOVIEREVIEW == 1 ? "checked" : "")/>
+
+                                    <label class="star star-1" for="star-1"></label> 
+
+                                    <input type="submit" name="sent" id="sentReview" class ="savebutton buttonCreate"value="Gửi đánh giá" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- nội dung phim -->
+                <div class="content-body col-12 pt-5">
+                    <h5>Nội dung phim</h5>
+                    <p>
+                        @Model.CONTENT_FILM
+                    </p>
+                </div>
+
+                <!-- bình luận -->
+                <div class="comment mb-3 col-12">
+                    <h5>Bình luận</h5>
+                    <div class="d-flex justify-content-center row">
+                        <div class="col-md-12">
+                            @*<div class="d-flex flex-column comment-section">
+            @{
+                foreach (var item in (IEnumerable<WEBSITE_FILM_002.Models._ListComments>)ViewBag.Comment)
+                {
+                    <div class="bg-white p-2">
+                        <div class="d-flex flex-row user-info">
+                            <img class="rounded-circle" src="~/Images/Users/@(item.avatar)" width="40">
+                            <div class="d-flex flex-column justify-content-start ml-2"><span class="d-block font-weight-bold name">@item.userFirstName @item.userLastName</span><span class="date text-black-50">@(item.date.ToString("dd/MM/yyyy"))</span></div>
+                        </div>
+                        <div class="mt-2">
+                            <p class="comment-text">
+                                @item.comment_content
+                            </p>
+                        </div>
+                    </div>
+                }
+            }
+            <div id="updatecomment"></div>
+            <div class="bg-light p-2">
+                <div class="d-flex flex-row align-items-start">
+                    <img class="rounded-circle" src="https://i.imgur.com/RpzrMR2.jpg" width="40">
+                    <textarea class="form-control ml-1 shadow-none textarea" style="max-width: 100%"></textarea>
+                    <a href="#" class="btn btn-primary m-2" id="sent_comment">Gửi</a>
+                </div>
+            </div>
+        </div>*@
+
+
+                            @* Bình luận FB start *@
+                            <div class="fb-comments" data-href="https://developers.facebook.com/docs/plugins/comments#configurator" data-width="728" data-numposts="2"></div>
+                            @* Bình luận FB End *@
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="film-hot mt-3 row overflow-hidden row pt-4 pb-3 fade-down-right">
+
+                <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner" id="film_hot_items">
+
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- nội dung bên phải -->
+        <div class="right-body col-12 col-md-3  pt-3">
+            <!-- Phim sắp chiếu -->
+            <h5 class="text-center h4-title" style="margin-top: 0;">Phim sắp chiếu</h5>
+            <div class="phim-sap-chieu container">
+                @{
+                    foreach (var item in (IEnumerable<WEBSITE_FILM_002.Models.FILMS>)ViewBag.NewFilm)
+                    {
+
+                        <div class="col-12 col-md-12 will_show">
+                            <a href="./@item.FILMID" class="">
+                                <img src="~/Images/FilmPoster/@item.IMAGEID" alt="@item.IMAGEID" />
+                                <div>
+                                    <p class="limit-text-3-line">@item.FILMNAME</p>
+                                    <p>Điểm <span>@item.MOVIEREVIEW</span></p>
+                                </div>
+                            </a>
+                            <div class="clearfix"></div>
+
+                        </div>
+                    }
+                }
+            </div>
+
+            <div style="clear:both;"></div>
+
+            <!-- xếp hạng dựa theo lượt xem phim -->
+            <h5 class="text-center h4-title" style="margin-top: .5rem;">Xếp hạng lượt xem</h5>
+            <div class="views-rank container">
+                @{
+                    int i = 1;
+                    foreach (var item in (IEnumerable<WEBSITE_FILM_002.Models.FILMS>)ViewBag.RankFilm)
+                    {
+                        <div class="col-12 mt-3 pt-2 pb-1 views-rank-item">
+                            <a href="./@item.FILMID">
+                                <div class="row">
+                                    <div class="col-4 text-center">
+                                        <h5 class="">@i</h5>
+                                    </div>
+                                    <div class="col-8 views-rank-name">
+                                        <p class="limit-text-2-line">@item.FILMNAME</p>
+                                        <p>Lượt xem: @item.VIEWS</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        i++;
+                    }
+                }
+            </div>
+
+        </div>
+    </div>
+</main>

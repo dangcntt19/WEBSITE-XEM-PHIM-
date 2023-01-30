@@ -1,0 +1,89 @@
+﻿@model WEBSITE_FILM_002.Models.ACCOUNTS
+
+@{
+    ViewBag.Title = "EditAccount";
+    Layout = "~/Areas/Admin/Views/Shared/_layout_Admin.cshtml";
+    int permisson = Model.PERMISSON;
+}
+
+<div>
+    <a href="../Accounts"><button class="button_save savebutton">Trở về</button></a>
+
+</div>
+
+<div class="d-flex justify-content-center align-content-center form_input_admin">
+    
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.ACCOUNTID)
+        <div class="row mb-4">
+            <h3 class="text-center" style="margin-left: 5px;">Cập nhật tài khoản</h3>
+        </div>
+        <div class="mb-3 row">
+            <div class="col-4">
+                @Html.LabelFor(model => model.ACCOUNTNAME, htmlAttributes: new { @class = "control-label" })
+            </div>
+            <div class="col-8">
+                @Html.EditorFor(model => model.ACCOUNTNAME, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ACCOUNTNAME, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <div class="col-4">
+                @Html.LabelFor(model => model.ACCOUNTPASS, htmlAttributes: new { @class = "control-label" })
+            </div>
+            <div class="col-8">
+                @Html.EditorFor(model => model.ACCOUNTPASS, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ACCOUNTPASS, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+
+        <div class="mb-3 row">
+            <div class="col-4">
+                <label for="password_2" class="form-label">Nhập lại mật khẩu</label>
+            </div>
+            <div class="col-8">
+                <input type="password" class="form-control" id="password_2">
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <div class="col-4">
+                <label for="DateCreate" class="form-label">Ngày tạo</label>
+            </div>
+            <div class="col-8">
+                <input type="datetime" class="form-control" id="DATECREATE" value="@(Model.DATECREATE)" disabled>
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <div class="col-4">
+                @Html.LabelFor(model => model.PERMISSON, htmlAttributes: new { @class = "control-label" })
+            </div>
+            <div class="col-8">
+                <select class="form-select text-center" id="PERMISSON" name="PERMISSON">
+                    <option @(permisson == 0 ? "selected" : "") value="0">Người dùng</option>
+                    <option @(permisson == 1 ? "selected" : "") value="1">Cộng tác viên</option>
+                    <option @(permisson == 2 ? "selected" : "") value="2">Quản trị viên</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <div class="col-md-offset-2 col-12 col-md-12 text-center">
+                <input type="submit" value="Save" class="buttonCreate" />
+            </div>
+        </div>
+    </div>
+    }
+</div>
+
+

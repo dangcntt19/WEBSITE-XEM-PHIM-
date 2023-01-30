@@ -1,0 +1,103 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Đăng kí</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- add icon link -->
+    <link rel="icon" href="https://media.geeksforgeeks.org/wp-content/cdn-uploads/gfg_200X200.png"
+          type="image/x-icon">
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
+    <link href="~/Content/Login.css" rel="stylesheet" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <main>
+        <div class="container">
+            <div class="screen-2" data-aos="zoom-in" data-aos-easing="linear" data-aos-anchor-placement="center-bottom" data-aos-duration="500">
+                <div class="screen__content">
+                    @using (Html.BeginForm("Register", "Pages", method: FormMethod.Post, new { @class = "register", enctype = "multipart/form-data" }))
+                    {
+                        <div class="row">
+                            <div class="login__field-2 col-6">
+                                <i class="login__icon fas fa-user"></i>
+                                <input type="text" name="firstname" id="firstname" class="login__input" placeholder="Họ">
+                            </div>
+                            <div class="login__field-2 col-6">
+                                <i class="login__icon fas fa-lock"></i>
+                                <input type="text" name="lastname" id="lastname" class="login__input" placeholder="Tên">
+                            </div>
+                        </div>
+                        <div class="login__field-2">
+                            <i class="login__icon fas fa-lock"></i>
+                            <input type="date" name="born" id="born" class="login__input" placeholder="">
+                        </div>
+                        <div class="login__field-2">
+                            <label for="image">Hình đại diện</label>
+                            <input type="file" name="image" id="image" class="form-control" placeholder="Hình đại diện">
+                        </div>
+                        <div class="login__field-2">
+                            <i class="login__icon fas fa-lock"></i>
+                            <input type="text" name="username" id="username" class="login__input" placeholder="Tài khoản">
+                        </div>
+                        <div class="login__field-2">
+                            <i class="login__icon fas fa-lock"></i>
+                            <input type="password" name="userpass" id="userpass" class="login__input" placeholder="Mật khẩu">
+                        </div>
+                        <div class="login__field-2">
+                            <i class="login__icon fas fa-lock"></i>
+                            <input type="password" name="userpass2" id="userpass2" class="login__input" placeholder="Nhập lại mật khẩu">
+                        </div>
+                        <button class="button login__submit text-center" type="submit" style="width: 10rem;">
+                            <span class="button__text w-100">ĐĂNG KÝ</span>
+                            <i class="button__icon fas fa-chevron-right"></i>
+                        </button>
+                    }
+                    <div class="social-login">
+                        <h3><a href="./index" class="nav-link">Trang chủ</a></h3>
+                        <div class="social-icons">
+                            <a href="./Login" class="nav-link">Trở về đăng nhập</a>
+                            @*<a href="#" class="social-login__icon fab fa-instagram"></a>
+                                <a href="#" class="social-login__icon fab fa-facebook"></a>
+                                <a href="#" class="social-login__icon fab fa-twitter"></a>*@
+                        </div>
+                    </div>
+                </div>
+                <div class="screen__background">
+                    <span class="screen__background__shape screen__background__shape4"></span>
+                    <span class="screen__background__shape screen__background__shape3"></span>
+                    <span class="screen__background__shape screen__background__shape2"></span>
+                    <span class="screen__background__shape screen__background__shape1"></span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Bootstrap JavaScript Libraries -->
+    <script src="@Url.Content("https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js")"
+            integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+            integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+    </script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+
+</body>
+
+</html>

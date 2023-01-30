@@ -1,0 +1,31 @@
+﻿@model PagedList.IPagedList<WEBSITE_FILM_002.Models.FILMS>
+@using PagedList.Mvc;
+
+@{
+
+        ViewBag.Title = "Danh sách phim";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<h3 class="h4-title text-center"  data-aos="zoom-in" data-aos-easing="linear" data-aos-anchor-placement="center-bottom" data-aos-duration="500">@ViewBag.category@ViewBag.language@ViewBag.listfilm</h3>
+
+<div class="row fadeIn"  data-aos="zoom-in" data-aos-easing="linear" data-aos-anchor-placement="center-bottom" data-aos-duration="500">
+    @{
+        foreach (var item in Model)
+        {
+            <div class="col-6 col-sm-4 col-md-3 col-lg-3 col-xl-2 mb-3 new-film-index">
+                <div class="position-relative bg-primary">
+                    <a href="/Pages/Detail_Film/@item.FILMID">
+                        <img class="position-absolute" src="~/Images//FilmPoster/@item.IMAGEID" alt="@item.FILMNAME" />
+                        <h5 class="position-absolute bottom-0 w-100 text-center p-2 limit-text-2-line">@item.FILMNAME</h5>
+                    </a>
+                </div>
+            </div>
+        }
+    }
+    <div class=" container-md text-center" >
+        @Html.PagedListPager(Model, page => Url.Action("ListFilm", new { page, category = ViewBag.category, language = ViewBag.language }))
+    </div>
+</div>

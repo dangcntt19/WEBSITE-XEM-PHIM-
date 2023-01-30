@@ -1,0 +1,155 @@
+﻿@model WEBSITE_FILM_002.Models.FILMS
+@{
+    ViewBag.Title = Model.FILMNAME;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+
+
+<main class=" container-fluid w-md-75 mt-5 pt-2" style=" background-color: #BAD7E9; padding-left: 0; padding-right: 0; "  data-aos="zoom-in" data-aos-easing="linear" data-aos-duration="500">
+
+    <div class="mb-3 ps-2" style="font-weight:600; color: #fff;">@Model.LANGUAGE > @Model.RESOLUTION > @Model.CATEGORY</div>
+
+    <div style="height: 10px; margin-bottom: 10px; background-color: #E3FDFD; "></div>
+
+    <!--<video id="my_video_1" class="video-js vjs-default-skin" width="640px" height="267px"
+           controls preload="none" poster='~/images/FilmPoster/@Model.IMAGEID'
+           data-setup='{ "aspectRatio":"640:267", "playbackRates": [1, 1.5, 2] }'>
+        <source src="~/Videos/@Model.VIDEOID" type='video/mp4' autoplay control/>-->
+    @*<source src="~/Videos/@Model.VIDEOID" type='video/webm' />*@
+    <!--</video>-->
+    <div id="playfilm">
+        <div>
+            <video width="100%" controls crossorigin playsinline poster="~/images/FilmPoster/@Model.IMAGEID" id="player">
+                <!-- Video files -->
+                <source src="~/Videos/@Model.VIDEOID" type="video/mp4" size="576">
+                <source src="~/Videos/@Model.VIDEOID" type="video/mp4" size="720">
+                <source src="~/Videos/@Model.VIDEOID" type="video/mp4" size="1080">
+                <source src="~/Videos/@Model.VIDEOID" type="video/mp4" size="1440">
+
+                <!-- Caption files -->
+                <track kind="captions" label="English" srclang="en" src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.en.vtt"
+                       default>
+                <track kind="captions" label="Français" srclang="fr" src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.fr.vtt">
+
+                <!-- Fallback for browsers that don't support the <video> element -->
+                <a href="~/Videos/@Model.VIDEOID" download>Download</a>
+            </video>
+            <div class="text-end  ps-4 pe-4">
+                <button type="button" class="btn js-pause">Toàn màn hình</button>
+                <button type="button" class="btn js-pause">Tắt đèn</button>
+            </div>
+        </div>
+        <div class="ps-4 pe-4">
+            <h5 class="h5-filmname limit-text-1-line">@Model.FILMNAME</h5>
+            <h5>Nội dung</h5>
+            <p class="limit-text-3-line film-about-playfilm">@Model.CONTENT_FILM</p>
+        </div>
+    </div>
+
+    <div style="height: 10px; margin-bottom: 10px; background-color: #E3FDFD; "></div>
+
+
+    <!-- bình luận -->
+    <div class="comment mb-3 col-12 ps-4 pe-4 pb-5 pt-1">
+        <h4 class="h4-title text-dark">Bình luận</h4>
+        <div class="d-flex justify-content-center row">
+            <div class="col-md-12 d-flex justify-content-center row">
+                @*<div class="d-flex flex-column comment-section">
+            @{
+                foreach (var item in (IEnumerable<WEBSITE_FILM_002.Models._ListComments>)ViewBag.Comment)
+                {
+                    <div class="bg-white p-2 mb-3" style="border-radius: 10px; font-weight: 600;">
+                        <div class="d-flex flex-row user-info">
+                            <img class="rounded-circle" src="~/Images/Users/@(item.avatar)" width="40">
+                            <div class="d-flex flex-column justify-content-start ml-2"><span class="d-block font-weight-bold name">@item.userFirstName @item.userLastName</span><span class="date text-black-50">@(item.date.ToString("dd/MM/yyyy"))</span></div>
+                        </div>
+                        <div class="mt-2">
+                            <p class="comment-text">
+                                @item.comment_content
+                            </p>
+                        </div>
+                    </div>
+                }
+            }
+            <div id="updatecomment"></div>
+            <div class="bg-light p-2" style="border-radius: 10px; font-weight: 600;">
+                <div class="d-flex flex-row align-items-start">
+                    <img class="rounded-circle" src="https://i.imgur.com/RpzrMR2.jpg" width="40">
+                    <textarea class="form-control ml-1 shadow-none textarea" style="max-width: 100%"></textarea>
+                    <a href="#" class="btn btn-primary m-2" id="sent_comment">Gửi</a>
+                </div>
+            </div>
+        </div>*@
+
+                @* Bình luận FB start *@
+                <div class="fb-comments" data-href="https://developers.facebook.com/docs/plugins/comments#configurator" data-width="1218"  data-numposts="2"></div>
+                @* Bình luận FB End *@
+            </div>
+        </div>
+    </div>
+
+    <div style="height: 10px; margin-bottom: 10px; background-color: #E3FDFD; "></div>
+
+
+    <div class="film-hot mt-3 row overflow-hidden row pt-4 pb-3 fade-down-right  ps-4 pe-4">
+
+        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner" id="film_hot_items">
+
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+
+    </div>
+
+
+</main>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // This is the bare minimum JavaScript. You can opt to pass no arguments to setup.
+        const player = new Plyr('#player');
+
+        // Expose
+        window.player = player;
+
+        // Bind event listener
+        function on(selector, type, callback) {
+            document.querySelector(selector).addEventListener(type, callback, false);
+        }
+
+        // Play
+        on('.js-play', 'click', () => {
+            player.play();
+        });
+
+        // Pause
+        on('.js-pause', 'click', () => {
+            player.pause();
+        });
+
+        // Stop
+        on('.js-stop', 'click', () => {
+            player.stop();
+        });
+
+        // Rewind
+        on('.js-rewind', 'click', () => {
+            player.rewind();
+        });
+
+        // Forward
+        on('.js-forward', 'click', () => {
+            player.forward();
+        });
+    });
+</script>

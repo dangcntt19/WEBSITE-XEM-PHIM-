@@ -1,0 +1,172 @@
+﻿
+@{
+    ViewBag.Title = "UserPage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var _user = (WEBSITE_FILM_002.Models.USERS)ViewBag._User;
+    var _account = (WEBSITE_FILM_002.Models.ACCOUNTS)ViewBag._Account;
+}
+
+
+<div class="d-flex justify-content-center">
+
+    
+
+
+    <div class="col-12 col-md-12 col-lg-8">
+        <div class="infor-user">
+            <div class="user-avatar">
+                <h4 class=" h4-title text-center p-3" style="font-weight: 900; color: #1C315E;">Thông tin cá nhân</h4>
+
+                <div class="d-flex justify-content-center">
+                    <div>
+                        <img src="~/Images//Users/@_user.IMAGENAME" alt="Alternate Text" style="width: 10rem; height: 10rem; border-radius: 50%; object-fit: cover;" />
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center">
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                @using (Html.BeginForm("ChangeAvatar", "_Users", method: FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                {
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Đổi hình đại diện</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <label for="avatar" class="form-label">Đổi hình đại diện</label>
+                                        <input type="file" class="form-control" name="image" id="avatar" value="" />
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="buttonCreate savebutton" data-bs-dismiss="modal">Đómg</button>
+                                        <input type="submit" class="buttonCreate savebutton" name="save" value="Xác nhận" />
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="button" class="buttonCreate savebutton" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Thay đổi
+                    </button>
+                </div>
+            </div>
+
+            <div class="user-infor">
+                <form action="/_Users/user_Info" method="post" class="pt-5" style="width: 100%">
+                    <div class="row mb-3">
+                        <div class="col-12 col-md-6 row">
+                            <div class="col-12 col-md-3">
+                                <label for="firstname" class="form-label font-weight-600">Họ</label>
+                            </div>
+                            <div class="col-12 col-md-8">
+                                <input type="text" class="form-control" name="firstname" id="firstname" value="@_user.FIRSTNAME" />
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-md-6 row">
+                            <div class="col-12 col-md-3">
+                                <label for="lastname" class="form-label font-weight-600">Tên</label>
+                            </div>
+                            <div class="col-12 col-md-8">
+                                <input type="text" class="form-control" name="lastname" id="lastname" value="@_user.LASTNAME" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-12 col-md-6 row">
+                            <div class="col-12 col-md-3">
+                                <label for="born" class="form-label font-weight-600">Ngày sinh</label>
+                            </div>
+                            <div class="col-12 col-md-8">
+                                <input type="date" class="form-control" name="born" id="born" value="@_user.BORN.ToString("yyyy-MM-dd")" />
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-md-6 row">
+                            <div class="col-12 col-md-3">
+                                <label for="gender" class="form-label font-weight-600">Giới tính</label>
+                            </div>
+                            <div class="col-12 col-md-8">
+                                <div>
+                                    <input type="radio" class="form-check-inline" name="gender" id="gender1" value="0" @(_user.GENDER == 0 ? "checked" : "") />
+                                    <label for="gender1" class="form-label font-weight-600">Nam</label>
+                                </div>
+                                <div>
+                                    <input type="radio" class="form-check-inline" name="gender" id="gender2" value="1" @(_user.GENDER == 1 ? "checked" : "") />
+                                    <label class="form-label font-weight-600" for="gender2">Nữ</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <input type="submit" class="buttonCreate savebutton" name="save" value="Lưu lại" />
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        @*<div style="background-color: #E3FDFD; height: 10px;"></div>*@
+
+        <div class="user-account">
+
+            <h4 class="h4-title  text-center p-3 "  style="font-weight: 900; color: #1C315E;">Thông tin tài khoản</h4>
+
+            <form action="/_Users/user_account" method="post" class="pt-3" style="width: 100%;">
+                <div class="row mb-3">
+                    <div class="col-12 col-sm-2">
+                        <label class="form-label font-weight-600" for="username">Tài khoản</label>
+                    </div>
+                    <div class="col-12 col-sm-8">
+                        <input type="text" class="form-control" id="username" name="username" value="@_account.ACCOUNTNAME" disabled/>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-12 col-sm-2">
+                        <label class="form-label font-weight-600" for="password">Mật khẩu</label>
+                    </div>
+                    <div class="col-12 col-sm-8">
+                        <input type="password" class="form-control" id="password" name="password" value="@_account.ACCOUNTPASS" />
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-12 col-sm-2">
+                        <label for="email" class="form-label font-weight-600">Email</label>
+                    </div>
+                    <div class="col-12 col-sm-8">
+                        <input type="email" class="form-control" id="email" name="email" value="@_account.EMAIL" />
+                    </div>
+                </div>
+                <div class="text-center">
+                    <input type="submit" class="buttonCreate savebutton" name="save" value="Lưu lại" />
+                </div>
+            </form>
+        </div>
+
+        @*<div style="background-color: #E3FDFD; height: 10px;"></div>*@
+
+        <div class="my-favourite">
+            <h5 class="h4-title  text-center p-3 " style="display:fix; font-weight: 900; color: #1C315E;"> Danh sách phim yêu thích</h5>
+
+            <div style="max-height: 50rem; overflow:hidden; overflow-y: scroll;">
+                <div style="height: auto; background-color: antiquewhite; padding: 1rem; padding-bottom: 0rem; overflow: hidden; border-radius: 7px; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
+                    <div>
+                        <img src="https://localhost:44327/Images/FilmPoster/ve-binh-giai-ngan-ha-ki-nghi-dat-biet.png" alt="Alternate Text" style="height: 9rem; float: left; margin-right: 1rem;" />
+                        <p class="limit-text-1-line font-weight-600 text-uppercase">Tên phim</p>
+                        <p class="font-weight-600">Lượt xem <span>0</span> -  Thời lượng <span>70</span> phút - Đánh giá <span>10</span> <i class="fas fa-star"></i></p>
+                        <p>Thời gian lưu</p>
+                    </div>
+                    <div>
+                        <p>
+                            <a href="#"><i class="fas fa-eye"></i> Xem lại</a>
+                            <a href="#"><i class="fas fa-trash"></i> Xóa</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

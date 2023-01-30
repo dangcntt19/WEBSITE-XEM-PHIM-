@@ -1,0 +1,51 @@
+﻿@model WEBSITE_FILM_002.Models.ACCOUNTS
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_layout_Admin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ACCOUNTS</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ACCOUNTNAME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ACCOUNTNAME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ACCOUNTPASS)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ACCOUNTPASS)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DATECREATE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DATECREATE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PERMISSON)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PERMISSON)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ACCOUNTID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
